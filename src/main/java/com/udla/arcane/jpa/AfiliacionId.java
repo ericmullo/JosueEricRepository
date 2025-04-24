@@ -1,28 +1,30 @@
+/* AfiliacionId.java */
 package com.udla.arcane.jpa;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class AfiliacionId implements Serializable {
 
-    private Long id_personaje;
-    private Long id_organizacion;
+    @Column(name = "id_personaje")
+    private Long personajeId;
 
-    public AfiliacionId() {}
+    @Column(name = "id_organizacion")
+    private Long organizacionId;
 
-    @Override
-    public boolean equals(Object o) {
+    /* constructores, equals & hashCode */
+    public AfiliacionId() { }
+    public AfiliacionId(Long personajeId, Long organizacionId) {
+        this.personajeId = personajeId;
+        this.organizacionId = organizacionId;
+    }
+    @Override public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AfiliacionId)) return false;
-        AfiliacionId that = (AfiliacionId) o;
-        return Objects.equals(id_personaje, that.id_personaje) &&
-                Objects.equals(id_organizacion, that.id_organizacion);
+        if (!(o instanceof AfiliacionId that)) return false;
+        return Objects.equals(personajeId, that.personajeId) &&
+                Objects.equals(organizacionId, that.organizacionId);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id_personaje, id_organizacion);
-    }
+    @Override public int hashCode() { return Objects.hash(personajeId, organizacionId); }
 }

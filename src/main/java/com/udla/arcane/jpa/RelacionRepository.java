@@ -1,6 +1,15 @@
+/* RelacionRepository.java */
 package com.udla.arcane.jpa;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-public interface RelacionRepository extends CrudRepository<Relacion, RelacionId> {
+import java.util.List;
+
+@RepositoryRestResource(path="relaciones", collectionResourceRel="relaciones")
+
+
+public interface RelacionRepository extends JpaRepository<Relacion, RelacionId> {
+    List<Relacion> findByPersonajeA_Id(Long personajeId);
+    List<Relacion> findByPersonajeB_Id(Long personajeId);
 }

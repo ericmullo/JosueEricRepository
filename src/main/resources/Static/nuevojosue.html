@@ -2,353 +2,210 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Simulador de Personajes</title>
+    <title>App Nueva</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        /* === Paleta de colores personalizados === */
+        :root {
+          --main-bg: #2c3e50;
+          --highlight: #3498db;
+          --alert: #e74c3c;
+          --neutral-light: #ecf0f1;
+          --neutral-dark: #2c3e50;
+        }
 
         body {
-          font-family: 'Press Start 2P', cursive;
-          margin: 0;
-          background: black;
-          color: #00FF00;
-          overflow-x: hidden;
-        }
-
-        nav {
-          background: #111;
-          border-bottom: 3px solid #00FF00;
-          padding: 10px;
-          text-align: center;
-          position: sticky;
-          top: 0;
-          z-index: 999;
-        }
-
-        nav a {
-          color: #00FF00;
-          text-decoration: none;
-          margin: 0 15px;
-          font-size: 12px;
-          transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-          color: yellow;
-        }
-
-        section {
-          padding: 40px 20px;
-          max-width: 1000px;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          background-color: #f4f6f8;
+          color: var(--neutral-dark);
+          max-width: 1200px;
           margin: auto;
+          padding: 2rem;
+        }
+
+        h1 {
+          color: var(--main-bg);
+          border-bottom: 3px solid var(--highlight);
+          padding-bottom: 0.5rem;
+          margin-top: 2rem;
+          margin-bottom: 1.5rem;
+          font-size: 2.2rem;
         }
 
         h2 {
-          border-bottom: 2px solid #00FF00;
-          padding-bottom: 10px;
-          margin-bottom: 30px;
-          color: #FFD700;
+          color: var(--highlight);
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
         }
 
-        form, .card-container {
-          background: #222;
-          padding: 25px;
-          border-radius: 10px;
-          box-shadow: 0 0 10px #00FF00;
+        .section-card {
+          background-color: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          padding: 1.5rem;
+          margin-bottom: 2rem;
         }
 
-        .form-group {
-          margin-bottom: 15px;
+        form {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1rem;
+          margin-bottom: 2rem;
         }
 
-        label {
-          display: block;
-          margin-bottom: 5px;
+        input, select, button {
+          padding: 0.75rem;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: border 0.3s, box-shadow 0.3s;
         }
 
-        input, select {
-          width: 100%;
-          padding: 8px;
-          border-radius: 5px;
-          border: 1px solid #00FF00;
-          background-color: #111;
-          color: #0f0;
+        input:focus, select:focus {
+          border-color: var(--highlight);
+          outline: none;
+          box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
         }
 
         button {
-          background-color: #00FF00;
-          color: black;
-          padding: 10px 20px;
+          background-color: var(--highlight);
+          color: #fff;
           border: none;
-          border-radius: 5px;
-          font-size: 12px;
+          font-weight: bold;
           cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         button:hover {
-          background-color: yellow;
+          background-color: #2980b9;
+          transform: translateY(-2px);
         }
 
-        .card-container {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 20px;
-          margin-top: 30px;
+        table {
+          background-color: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+          overflow: hidden;
+          margin-top: 1.5rem;
         }
 
-        .card {
-          flex: 1;
-          min-width: 220px;
-          background: #111;
-          border: 2px dashed #00FF00;
-          padding: 15px;
-          border-radius: 8px;
+        th {
+          background-color: var(--main-bg);
+          color: #fff;
+          padding: 1rem;
+          text-align: left;
         }
 
-        .card h3 {
-          color: #FF69B4;
+        td {
+          padding: 1rem;
+          border-bottom: 1px solid #e0e0e0;
         }
 
-        .card p {
-          color: #ADFF2F;
+        tr:hover {
+          background-color: #f1f1f1;
+        }
+
+        .badge {
+          display: inline-block;
+          padding: 0.3em 0.8em;
+          border-radius: 999px;
+          font-size: 0.85em;
+          background-color: var(--neutral-light);
+          color: var(--neutral-dark);
+        }
+
+        #form-relacion button {
+          background-color: var(--alert);
+        }
+        #form-relacion button:hover {
+          background-color: #c0392b;
+        }
+
+        #form-uso button {
+          background-color: #27ae60;
+        }
+        #form-uso button:hover {
+          background-color: #219a52;
         }
     </style>
 </head>
 <body>
+<h1>App Nueva</h1>
 
-<nav>
-    <a href="#registro">🕹️ Registro</a>
-    <a href="#afiliacion">🛡️ Afiliación</a>
-    <a href="#tecnologias">💾 Tecnologías</a>
-    <a href="#relaciones">🤝 Relaciones</a>
-</nav>
-
-<section id="registro">
-    <h2>🕹️ Registro de Personaje</h2>
-    <form id="formPersonaje">
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" required>
-        </div>
-        <div class="form-group">
-            <label for="pais">País:</label>
-            <input type="text" id="pais" required>
-        </div>
-        <div class="form-group">
-            <label for="organizacion">Organización:</label>
-            <input type="text" id="organizacion" required>
-        </div>
-        <div class="form-group">
-            <label for="afiliacion">Afiliación:</label>
-            <select id="afiliacion" required>
-                <option value="Aliados">Aliados</option>
-                <option value="Enemigos">Enemigos</option>
-                <option value="Neutrales">Neutrales</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="relaciones">Relaciones (nombres separados por comas):</label>
-            <input type="text" id="relaciones" required>
-        </div>
-        <div class="form-group">
-            <label for="tecnologia">Tecnología usada:</label>
-            <input type="text" id="tecnologia" required>
-        </div>
-        <button type="submit">Registrar Personaje</button>
+<div class="section-card">
+    <h2>Agregar Personaje</h2>
+    <form id="form-personaje">
+        <input type="text" placeholder="Nombre del personaje" required>
+        <input type="text" placeholder="Universo" required>
+        <select>
+            <option value="">Selecciona tipo</option>
+            <option value="Héroe">Héroe</option>
+            <option value="Villano">Villano</option>
+        </select>
+        <button type="submit">Agregar</button>
     </form>
-    <div class="card-container" id="personajesRegistrados"></div>
-</section>
+</div>
 
-<section id="afiliacion">
-    <h2>🛡️ Afiliación</h2>
-    <div id="afiliacionInfo">
-        <p><strong>Afiliación Actual:</strong> <span id="afiliacionNombre">[Nombre del Personaje]</span></p>
-        <p><strong>Aliados:</strong> <span id="afiliados">Tus aliados estarán aquí.</span></p>
-        <p><strong>Enemigos:</strong> <span id="enemigos">Tus enemigos estarán aquí.</span></p>
-        <p><strong>Neutrales:</strong> <span id="neutrales">Tus neutrales estarán aquí.</span></p>
-    </div>
-    <form id="afiliacionForm">
-        <div class="form-group">
-            <label for="nuevoAliado">Nuevo Aliado:</label>
-            <input type="text" id="nuevoAliado" placeholder="Nombre del nuevo aliado">
-        </div>
-        <div class="form-group">
-            <label for="nuevoEnemigo">Nuevo Enemigo:</label>
-            <input type="text" id="nuevoEnemigo" placeholder="Nombre del nuevo enemigo">
-        </div>
-        <div class="form-group">
-            <label for="nuevoNeutral">Nuevo Neutral:</label>
-            <input type="text" id="nuevoNeutral" placeholder="Nombre del nuevo neutral">
-        </div>
-        <button type="submit">Actualizar Afiliación</button>
+<div class="section-card">
+    <h2>Relaciones</h2>
+    <form id="form-relacion">
+        <input type="text" placeholder="Personaje A" required>
+        <input type="text" placeholder="Personaje B" required>
+        <select>
+            <option value="">Tipo de relación</option>
+            <option value="Amigo">Amigo</option>
+            <option value="Enemigo">Enemigo</option>
+        </select>
+        <button type="submit">Relacionar</button>
     </form>
-</section>
+</div>
 
-<section id="tecnologias">
-    <h2>💾 Tecnologías Usadas</h2>
-    <div class="card-container">
-        <div class="card">
-            <h3>Dron Fantasma</h3>
-            <p>Invisibilidad activa, vigilancia aérea.</p>
-        </div>
-        <div class="card">
-            <h3>Mech Defender X</h3>
-            <p>Armadura automatizada de defensa pesada.</p>
-        </div>
-        <div class="card">
-            <h3>Visor Neural MK-II</h3>
-            <p>Interfaz cerebro-máquina con realidad aumentada.</p>
-        </div>
-        <div class="card">
-            <h3>Campo Escudo Zeta</h3>
-            <p>Generador de campo defensivo portátil.</p>
-        </div>
-    </div>
-</section>
-
-<section id="relaciones">
-    <h2>🤝 Relaciones</h2>
-    <div id="relacionesInfo">
-        <p><strong>Relaciones Personales:</strong> <span id="relacionesList">Aquí verás tus relaciones.</span></p>
-    </div>
-    <form id="relacionesForm">
-        <div class="form-group">
-            <label for="relacionNombre">Nombre de la Relación:</label>
-            <input type="text" id="relacionNombre" placeholder="Nombre de la persona en la relación" required>
-        </div>
-        <div class="form-group">
-            <label for="tipoRelacion">Tipo de Relación:</label>
-            <select id="tipoRelacion" required>
-                <option value="Amigos">Amigos</option>
-                <option value="Rivales">Rivales</option>
-                <option value="Colaboradores">Colaboradores</option>
-            </select>
-        </div>
-        <button type="submit">Agregar Relación</button>
+<div class="section-card">
+    <h2>Uso de Poderes</h2>
+    <form id="form-uso">
+        <input type="text" placeholder="Nombre del personaje" required>
+        <input type="text" placeholder="Poder usado" required>
+        <input type="date" required>
+        <button type="submit">Registrar uso</button>
     </form>
-</section>
+</div>
 
-<script>
-    // Registro de Personajes
-    const formPersonaje = document.getElementById('formPersonaje');
-    const contenedorPersonajes = document.getElementById('personajesRegistrados');
-    let personajes = [];
+<div class="section-card">
+    <h2>Listado de Personajes</h2>
+    <table>
+        <thead>
+        <tr><th>Nombre</th><th>Universo</th><th>Tipo</th></tr>
+        </thead>
+        <tbody id="tabla-personajes">
+        <tr><td>Ejemplo</td><td>Marvel</td><td><span class="badge">Héroe</span></td></tr>
+        </tbody>
+    </table>
+</div>
 
-    // Afiliación
-    const afiliados = document.getElementById('afiliados');
-    const enemigos = document.getElementById('enemigos');
-    const neutrales = document.getElementById('neutrales');
+<div class="section-card">
+    <h2>Relaciones Existentes</h2>
+    <table>
+        <thead>
+        <tr><th>Personaje A</th><th>Personaje B</th><th>Relación</th></tr>
+        </thead>
+        <tbody id="tabla-relaciones">
+        <tr><td>Spiderman</td><td>Venom</td><td><span class="badge">Enemigo</span></td></tr>
+        </tbody>
+    </table>
+</div>
 
-    // Relaciones
-    const relacionesForm = document.getElementById('relacionesForm');
-    const relacionesList = document.getElementById('relacionesList');
-
-    formPersonaje.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const nombre = document.getElementById('nombre').value.trim();
-        const pais = document.getElementById('pais').value.trim();
-        const organizacion = document.getElementById('organizacion').value.trim();
-        const afiliacion = document.getElementById('afiliacion').value;
-        const relaciones = document.getElementById('relaciones').value.split(',').map(r => r.trim());
-        const tecnologia = document.getElementById('tecnologia').value.trim();
-
-        if (!nombre || !pais || !organizacion || !tecnologia) {
-            alert('⚠️ Completa todos los campos requeridos');
-            return;
-        }
-
-        // Crear personaje
-        const personaje = {
-            nombre,
-            pais,
-            organizacion,
-            afiliacion,
-            relaciones,
-            tecnologia
-        };
-        personajes.push(personaje);
-
-        // Crear tarjeta
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h3>${nombre}</h3>
-            <p><strong>País:</strong> ${pais}</p>
-            <p><strong>Organización:</strong> ${organizacion}</p>
-            <p><strong>Afiliación:</strong> ${afiliacion}</p>
-            <p><strong>Relaciones:</strong> ${relaciones.join(', ')}</p>
-            <p><strong>Tecnología:</strong> ${tecnologia}</p>
-        `;
-        contenedorPersonajes.appendChild(card);
-
-        // Actualizar afiliación
-        const actualizarLista = (elemento, valor) => {
-            elemento.textContent = elemento.textContent.includes('aquí')
-                ? valor
-                : `${elemento.textContent}, ${valor}`;
-        };
-
-        switch(afiliacion) {
-            case 'Aliados':
-                actualizarLista(afiliados, nombre);
-                break;
-            case 'Enemigos':
-                actualizarLista(enemigos, nombre);
-                break;
-            case 'Neutrales':
-                actualizarLista(neutrales, nombre);
-                break;
-        }
-
-        formPersonaje.reset();
-    });
-
-    // Manejo de relaciones
-    relacionesForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const nombreRelacion = document.getElementById('relacionNombre').value.trim();
-        const tipoRelacion = document.getElementById('tipoRelacion').value;
-
-        if (!nombreRelacion) {
-            alert('⚠️ Ingresa un nombre válido');
-            return;
-        }
-
-        const nuevaRelacion = document.createElement('div');
-        nuevaRelacion.textContent = `${nombreRelacion} - ${tipoRelacion}`;
-
-        if (relacionesList.textContent.includes('Aquí verás')) {
-            relacionesList.innerHTML = '';
-        }
-
-        relacionesList.appendChild(nuevaRelacion);
-        relacionesForm.reset();
-    });
-
-    // Actualizar afiliación manual
-    document.getElementById('afiliacionForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const nuevoAliado = document.getElementById('nuevoAliado').value.trim();
-        const nuevoEnemigo = document.getElementById('nuevoEnemigo').value.trim();
-        const nuevoNeutral = document.getElementById('nuevoNeutral').value.trim();
-
-        const actualizarCampo = (campo, valor) => {
-            if (valor) {
-                campo.textContent = campo.textContent.includes('aquí')
-                    ? valor
-                    : `${campo.textContent}, ${valor}`;
-            }
-        };
-
-        actualizarCampo(afiliados, nuevoAliado);
-        actualizarCampo(enemigos, nuevoEnemigo);
-        actualizarCampo(neutrales, nuevoNeutral);
-
-        this.reset();
-    });
-</script>
-
+<div class="section-card">
+    <h2>Registro de Usos de Poder</h2>
+    <table>
+        <thead>
+        <tr><th>Personaje</th><th>Poder</th><th>Fecha</th></tr>
+        </thead>
+        <tbody id="tabla-usos">
+        <tr><td>Storm</td><td>Control del clima</td><td>2025-04-24</td></tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -1,6 +1,12 @@
+/* PersonajeRepository.java */
 package com.udla.arcane.jpa;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-public interface PersonajeRepository extends CrudRepository<Personaje, Long> {
+import java.util.List;
+@RepositoryRestResource(path="personajes", collectionResourceRel="personajes")
+
+public interface PersonajeRepository extends JpaRepository<Personaje, Long> {
+    List<Personaje> findByNombreContainingIgnoreCase(String nombre);
 }

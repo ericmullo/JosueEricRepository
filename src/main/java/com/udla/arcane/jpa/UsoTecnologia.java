@@ -1,22 +1,38 @@
+/* UsoTecnologia.java */
 package com.udla.arcane.jpa;
 
 import jakarta.persistence.*;
 
+// UsoTecnologia.java
 @Entity
+@Table(name="uso_tecnologia")
 public class UsoTecnologia {
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
-    @EmbeddedId
-    private UsoTecnologiaId id;
-
-    @ManyToOne
-    @MapsId("id_personaje")
+    @ManyToOne @JoinColumn(name="id_personaje")
     private Personaje personaje;
 
-    @ManyToOne
-    @MapsId("id_tecnologia")
+    @ManyToOne @JoinColumn(name="id_tecnologia")
     private Tecnologia tecnologia;
 
-    public UsoTecnologia() {}
+    protected UsoTecnologia() {}
+    public UsoTecnologia(Personaje p, Tecnologia t) {
+        this.personaje = p;
+        this.tecnologia = t;
+    }
+    // getters…
 
-    // Getters y setters
+    public Long getId() {
+        return id;
+    }
+
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public Tecnologia getTecnologia() {
+        return tecnologia;
+    }
 }
+

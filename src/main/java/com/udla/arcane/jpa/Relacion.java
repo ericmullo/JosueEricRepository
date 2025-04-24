@@ -1,24 +1,45 @@
+/* Relacion.java */
 package com.udla.arcane.jpa;
 
 import jakarta.persistence.*;
 
+// Relacion.java
 @Entity
+@Table(name="relacion")
 public class Relacion {
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
-    @EmbeddedId
-    private RelacionId id;
-
-    @ManyToOne
-    @MapsId("id_personaje_a")
+    @ManyToOne @JoinColumn(name="id_personaje_a")
     private Personaje personajeA;
 
-    @ManyToOne
-    @MapsId("id_personaje_b")
+    @ManyToOne @JoinColumn(name="id_personaje_b")
     private Personaje personajeB;
 
-    private String tipo_relacion;
+    private String tipoRelacion;
 
-    public Relacion() {}
+    protected Relacion() {}
+    public Relacion(Personaje a, Personaje b, String tipo) {
+        this.personajeA = a;
+        this.personajeB = b;
+        this.tipoRelacion = tipo;
+    }
+    // getters…
 
-    // Getters y setters
+    public Long getId() {
+        return id;
+    }
+
+    public Personaje getPersonajeA() {
+        return personajeA;
+    }
+
+    public Personaje getPersonajeB() {
+        return personajeB;
+    }
+
+    public String getTipoRelacion() {
+        return tipoRelacion;
+    }
 }
+
