@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>App Nueva</title>
+    <style>
+        /* === Paleta de colores personalizados === */
+        :root {
+          --main-bg: #2c3e50;
+          --highlight: #3498db;
+          --alert: #e74c3c;
+          --neutral-light: #ecf0f1;
+          --neutral-dark: #2c3e50;
+        }
+
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          background-color: #f4f6f8;
+          color: var(--neutral-dark);
+          max-width: 1200px;
+          margin: auto;
+          padding: 2rem;
+        }
+
+        h1 {
+          color: var(--main-bg);
+          border-bottom: 3px solid var(--highlight);
+          padding-bottom: 0.5rem;
+          margin-top: 2rem;
+          margin-bottom: 1.5rem;
+          font-size: 2.2rem;
+        }
+
+        h2 {
+          color: var(--highlight);
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
+        }
+
+        .section-card {
+          background-color: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+        }
+
+        form {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1rem;
+          margin-bottom: 2rem;
+        }
+
+        input, select, button {
+          padding: 0.75rem;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, select:focus {
+          border-color: var(--highlight);
+          outline: none;
+          box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+        }
+
+        button {
+          background-color: var(--highlight);
+          color: #fff;
+          border: none;
+          font-weight: bold;
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        button:hover {
+          background-color: #2980b9;
+          transform: translateY(-2px);
+        }
+
+        table {
+          background-color: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+          overflow: hidden;
+          margin-top: 1.5rem;
+        }
+
+        th {
+          background-color: var(--main-bg);
+          color: #fff;
+          padding: 1rem;
+          text-align: left;
+        }
+
+        td {
+          padding: 1rem;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+          background-color: #f1f1f1;
+        }
+
+        .badge {
+          display: inline-block;
+          padding: 0.3em 0.8em;
+          border-radius: 999px;
+          font-size: 0.85em;
+          background-color: var(--neutral-light);
+          color: var(--neutral-dark);
+        }
+
+        #form-relacion button {
+          background-color: var(--alert);
+        }
+        #form-relacion button:hover {
+          background-color: #c0392b;
+        }
+
+        #form-uso button {
+          background-color: #27ae60;
+        }
+        #form-uso button:hover {
+          background-color: #219a52;
+        }
+    </style>
+</head>
+<body>
+<h1>App Nueva</h1>
+
+<div class="section-card">
+    <h2>Agregar Personaje</h2>
+    <form id="form-personaje">
+        <input type="text" placeholder="Nombre del personaje" required>
+        <input type="text" placeholder="Universo" required>
+        <select>
+            <option value="">Selecciona tipo</option>
+            <option value="Héroe">Héroe</option>
+            <option value="Villano">Villano</option>
+        </select>
+        <button type="submit">Agregar</button>
+    </form>
+</div>
+
+<div class="section-card">
+    <h2>Relaciones</h2>
+    <form id="form-relacion">
+        <input type="text" placeholder="Personaje A" required>
+        <input type="text" placeholder="Personaje B" required>
+        <select>
+            <option value="">Tipo de relación</option>
+            <option value="Amigo">Amigo</option>
+            <option value="Enemigo">Enemigo</option>
+        </select>
+        <button type="submit">Relacionar</button>
+    </form>
+</div>
+
+<div class="section-card">
+    <h2>Uso de Poderes</h2>
+    <form id="form-uso">
+        <input type="text" placeholder="Nombre del personaje" required>
+        <input type="text" placeholder="Poder usado" required>
+        <input type="date" required>
+        <button type="submit">Registrar uso</button>
+    </form>
+</div>
+
+<div class="section-card">
+    <h2>Listado de Personajes</h2>
+    <table>
+        <thead>
+        <tr><th>Nombre</th><th>Universo</th><th>Tipo</th></tr>
+        </thead>
+        <tbody id="tabla-personajes">
+        <tr><td>Ejemplo</td><td>Marvel</td><td><span class="badge">Héroe</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section-card">
+    <h2>Relaciones Existentes</h2>
+    <table>
+        <thead>
+        <tr><th>Personaje A</th><th>Personaje B</th><th>Relación</th></tr>
+        </thead>
+        <tbody id="tabla-relaciones">
+        <tr><td>Spiderman</td><td>Venom</td><td><span class="badge">Enemigo</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section-card">
+    <h2>Registro de Usos de Poder</h2>
+    <table>
+        <thead>
+        <tr><th>Personaje</th><th>Poder</th><th>Fecha</th></tr>
+        </thead>
+        <tbody id="tabla-usos">
+        <tr><td>Storm</td><td>Control del clima</td><td>2025-04-24</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
